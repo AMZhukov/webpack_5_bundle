@@ -47,7 +47,7 @@ module.exports = {
                 '@babel/preset-env',
                 {
                   // if production bundle then get parameter from package.json
-                  useBuiltIns: isProd ? 'entry' : '> 10% and last 2 versions',
+                  useBuiltIns: isProd ? 'entry' : false,
                 },
               ],
             ],

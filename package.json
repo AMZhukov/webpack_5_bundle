@@ -6,7 +6,7 @@
   "scripts": {
     "devServer": "prefix --assets node.js",
     "dev":"webpack --mode development",
-    "watch": "webpack serve",
+    "watch": "webpack serve --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production"
   },
   "browserslist": "> 1.0% and last 2 versions",
