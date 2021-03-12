@@ -1,0 +1,11 @@
+@import "../main.scss";
+.nav {
+  // .nav__item
+  &__item {
+    color: $color6;
+    font-family: Gilroy, sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+}

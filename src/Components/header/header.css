@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Semibold"), local("Gilroy-Semibold"), url("./Gilroy-Semibold.woff2") format("woff2"), url("./Gilroy-Semibold.woff") format("woff"), url("./Gilroy-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal; }
+.header__container {
+  max-width: 1100px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between; }
+
+/*# sourceMappingURL=header.css.map */

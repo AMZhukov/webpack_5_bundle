@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy Semibold"), local("Gilroy-Semibold"), url("./Gilroy-Semibold.woff2") format("woff2"), url("./Gilroy-Semibold.woff") format("woff"), url("./Gilroy-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal; }
+.nav__item {
+  color: #B5B5B5;
+  font-family: Gilroy, sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase; }
+
+/*# sourceMappingURL=nav.css.map */
