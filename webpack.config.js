@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin'); // to clean up t
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // to minimize .CSS files
 const TerserPlugin = require('terser-webpack-plugin'); // to minimize .JS files
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // to separate the CSS into a separate file
 
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
@@ -24,6 +25,13 @@ const optimization = () => {
   return config;
 };
 
+const useBuiltIns = () => {
+  if (isProd) {
+    return 'entry';
+  }
+  return false;
+};
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -34,7 +42,7 @@ module.exports = {
     rules: [
       {
         test: /\.txt$/,
-        use: 'raw-loader',
+        type: 'asset/source',
       },
       {
         test: /\.m?js$/,
@@ -47,7 +55,7 @@ module.exports = {
                 '@babel/preset-env',
                 {
                   // if production bundle then get parameter from package.json
-                  useBuiltIns: isProd ? 'entry' : false,
+                  useBuiltIns: useBuiltIns(),
                 },
               ],
             ],
@@ -57,15 +65,31 @@ module.exports = {
       },
       {
         test: /\.(s[ac]ss|css)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          {
+            loader: 'resolve-url-loader',
+            options: {
+              root: path.join(__dirname, 'src'),
+            },
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
-        type: 'asset/inline',
+        test: /\.(woff(2)?|eot|ttf|otf|)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: isDev ? '[name].[ext]' : '[name].[contenthash].[ext]',
+        },
       },
     ],
   },
@@ -94,7 +118,9 @@ module.exports = {
         },
       ],
     }),
-    // apply changes only on hot reboot
-    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: isDev ? '[name].css' : '[name].[contenthash].css',
+      chunkFilename: isDev ? '[id].css' : '[id].[contenthash].css',
+    }),
   ],
 };

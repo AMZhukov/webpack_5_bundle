@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,UAQC;EAPC,WAAW,EAAE,QAAQ;EACrB,GAAG,EAAE,iMAG4C;EACjD,WAAW,EAAE,GAAG;EAChB,UAAU,EAAE,MAAM;ACFlB,kBAAa;EACX,SAAS,ECJD,MAAM;EDKd,OAAO,EAAE,IAAI;EACb,MAAM,EAAE,MAAM;EACd,eAAe,EAAE,aAAa",
-"sources": ["../Gilroy-Semibold.scss","header.scss","../main.scss"],
-"names": [],
-"file": "header.css"
-}
